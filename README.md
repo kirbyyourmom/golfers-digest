@@ -219,7 +219,7 @@ a-[p]      # shorter by 4 chars total
 
 ### Replacing `true` and `false`
 
-`true` and `false` weren't too short for you? Well here's a trick to make them shorter ![](https://github.com/radius2703/golfers-digest/blob/master/assets/picardia.png?raw=true)
+`true` and `false` weren't too short for you? Well here's a trick to make them shorter ![](https://github.com/radius2703/golfers-digest/blob/master/assets/picardia-x32.png?raw=true)
 
 ```rb
 true  # before
