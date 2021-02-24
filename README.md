@@ -25,7 +25,7 @@ a=0,1,1,2    # after
 
 ### uniq(ue)
 
-If you want to find the unique values of an iterable, you'd use the `uniq` method. There's a shorter way though!
+If you want to find the unique values of an iterable, you'd use the `uniq` method. There's a shorter way though ![](https://github.com/radius2703/golfers-digest/blob/master/assets/picardia-x32.png?raw=true)!
 
 ```rb
 a=0,1,1,2,2,3,3  # uses the trick mentioned above
@@ -80,7 +80,7 @@ If the string *includes* the substring, then it returns the substring instead of
 a["foo"]  #=> "foo"
 ```
 
-As a bonus, you can even use regular expression!
+As a bonus, you can even use regular expression! ![](https://github.com/radius2703/golfers-digest/blob/master/assets/picardia-x32.png?raw=true)
 
 ```rb
 a[/foo/]  #=> "foo"
