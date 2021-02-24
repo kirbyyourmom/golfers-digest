@@ -77,13 +77,13 @@ a["foo"]         # after, an astounding 7 chars difference!
 If the string *includes* the substring, then it returns the substring instead of a boolean for the first one.
 
 ```rb
-a["foo"]  #==> "foo"
+a["foo"]  #=> "foo"
 ```
 
 As a bonus, you can even use regular expression!
 
 ```rb
-a[/foo/]  #==> "foo"
+a[/foo/]  #=> "foo"
 ```
 
 ### `tr` instead of `gsub`
@@ -103,6 +103,16 @@ If you need to remove the trailing new-line character, you can use `chop` instea
 ```rb
 gets.chomp  # before
 gets.chop   # after
+```
+
+⚠ **WARNING: `chop` chops the last character off the string. If there's no newline character at the end, it will eat up the last character.**
+
+```rb
+a="foobar\n"
+a.chop  #=> "foobar"
+
+a="foobar"
+a.chop  #=> "fooba"
 ```
 
 ### dash rocket / stabby lambda
@@ -179,7 +189,85 @@ Be careful though, this returns a floating point number, so thing *can* get inac
 You must have heard about BODMAS or PEMDAS depending upon where you live. In programming however, it's UBODMAS or UPEDMAS. The 'U' stands for Unary. Unary operators have higher precedence than arithemetic (not including exponentiation)
 `~-a` is equivalent to `a-1` and `-~a` is equivalent to `a+1`
 ```rb
-2*(1+2)  # correct, but long
+2*(1+2)  # correct, but *long*
 2*1+2    # wrong, according to BODMAS multiplication has higher precedence than addition
 2*-~2    # correct, 2 char shorter
+```
+
+
+### Range to Array conversion
+
+There's a shorter way to convert a range to an array by using the splat operator. Here's how:
+
+```rb
+(1..42).to_a  # before
+[*(1..42)]    # after, but can be shortened even more
+[*1..43]      # after, 4 char difference.
+```
+
+### Shorter way of using `compact`
+
+The `compact` method is used to remove falsy elements
+from an array. There's a shorter way to do so, though. \<insert picardia>
+
+```rb
+a=0,1,nil,2,nil,3,4,nil,nil
+a.compact  # before
+a-[nil]    # after, but can be shortened
+a-[p]      # shorter by 4 chars total
+```
+
+### Replacing `true` and `false`
+
+`true` and `false` weren't too short for you? Well here's a trick to make them shorter.
+
+```rb
+true  # before
+!p    # after
+
+false # before
+!0    # after
+```
+
+If you just want a falsy value, you can use `p` which returns `nil` instead of `!0`.
+
+### Checking if an element is inside a range
+
+If you need to check if a particular element is inside a range, then you can use the following instead:
+
+```rb
+(1..42).include?42  # before
+(1..42)===42        # after, saved 6 characters
+```
+
+### `digits`
+
+To get the digits of a number you can do the following:
+
+```rb
+a=42
+a.to_s.chars.map(&:to_i)  # before
+a.digits                  # after
+```
+
+### Using `clamp`
+
+Wanted to keep a number between the range of 2 numbers? The `clamp` method can come handy then. It does exactly what it says. It clamps it to a minimum if the number is lower than it, or to the maximum if higher.
+
+```rb
+min,max=0,42
+a,b=46,-3
+a.clamp(min,max)  #=> 42
+b.clamp(min,max)  #=> 0
+```
+
+
+### Set precision for `ceil` and `floor`
+
+If you want to floor or ceil a floating number, but not truncate it completely to an integer, and instead have a set precision, you can pass a precision argument in the method.
+
+```rb
+pi=3.1416
+pi.floor 1  #=> 3.1
+pi.ceil 1   #=> 3.2
 ```
