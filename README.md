@@ -1,0 +1,185 @@
+# Ruby tips for code golf!
+
+## What is Ruby code golfing?
+Code golfing is a "sport" of writing the smallest/shortest amount of code to do a particular thing/task. An example of which can be [making a morse encoder](https://code.golf/morse-encoder#ruby) in the shortest amount of code possible. And ruby code golfing, is basically code golfing but, in ruby!
+
+⚠ **WARNING: Do this only as a challenge. Do not practice any of the following in commercial projects, or just projects themselves. Code golfing makes code hard to read, understand, and debug (as you'll see in a bit) which is *complete* opposite of professional code.**
+
+
+### Array assignment
+
+If you want to assign a single array literal to a variable, you can use a splat operator on the LHS of the assignment.
+
+```rb
+a=[0]  # before
+*a=0   # after
+```
+
+If you have multiple values, however, you don't need the splat operator at all!
+
+```rb
+a=[0,1,1,2]  # before
+a=0,1,1,2    # after
+```
+
+
+### uniq(ue)
+
+If you want to find the unique values of an iterable, you'd use the `uniq` method. There's a shorter way though!
+
+```rb
+a=0,1,1,2,2,3,3  # uses the trick mentioned above
+
+a.uniq  # before
+a|[]    # 2 chars shorter
+a&a     # 3 chars shorter in total!
+```
+
+If you need to assign an empty array as well, you can use this which will save even more chars:
+
+```rb
+a.uniq;b=[]  # before
+a|b=[]       # after, an astounding 5 chars difference!
+```
+
+### Single character string literal shorthand
+
+If you use a single character string literal somewhere in an expression, you'd probably use `'a'` or `"a"`. But there's a shorthand 
+
+
+### Joining arrays
+
+Usually, `.join(' ')` does the job, but for code golf, you can use these:
+
+```rb
+a=1,2,3,4
+a.join  # before
+a*''    # after
+```
+
+If you'd like to use a single char delimiter however, you can use the single character shorthand which is `?<character>` which is shown above.
+
+```rb
+a.join(',')  # before
+a*?,         # after, an astounding 7 char difference!
+```
+
+### Include
+If you want to check whether a string contains a substring, you can use `[]` instead of `include?`
+
+```rb
+a="foobar"
+
+a.include?"foo"  # before
+a["foo"]         # after, an astounding 7 chars difference!
+```
+
+If the string *includes* the substring, then it returns the substring instead of a boolean for the first one.
+
+```rb
+a["foo"]  #==> "foo"
+```
+
+As a bonus, you can even use regular expression!
+
+```rb
+a[/foo/]  #==> "foo"
+```
+
+### `tr` instead of `gsub`
+
+If you want character-wise substitution, use `tr` instead of `gsub`
+
+```rb
+"101011".tr('10','AB')
+# or
+"101011".tr'10','AB'
+```
+
+### `chop` instead of `chomp`
+
+If you need to remove the trailing new-line character, you can use `chop` instead of `chomp`
+
+```rb
+gets.chomp  # before
+gets.chop   # after
+```
+
+### dash rocket / stabby lambda
+
+Use the dash rocket/stabby lambda operator (new in 1.9) instead of `def` .. `end`.
+
+```rb
+def max*n
+n.max
+end              # before
+
+max=->*n{n.max}  # after, saves usually around 5 characters
+```
+
+⚠ **WARNING: function calls use `[]` or `.()` instead of `()`**
+
+```rb
+max(1,2)  # using def .. end
+max[1,2]  # using the dash rocket operator
+max.(1,2) # " "
+```
+
+This means you cannot exclude the brackets.
+So you'll have to sacrifice 1 char in certain cases.
+
+
+### Curb your `do` `end`
+
+Instead of using `do` and `end` for certain methods, you can use `{`..`}` block. This saves 3-5 characters. You'll see why.
+
+```rb
+a=0,1,1,2
+a.each do|a|p a end  # before
+a.each{|a|p a}       # after
+```
+
+But, here's the problem. The precedence of `{`..`}` is high. Because of that, you'll need brackets around some.
+
+```rb
+(?a..?m).zip (1..5).cycle do|a|puts a*?,end  # before
+(?a..?m).zip (1..5).cycle{|a|puts a*?,}      # wrong, since it applies it to cycle not zip
+(?a..?m).zip((1..5).cycle){|a|puts a*?,}     # correct, applies it to zip not cycle
+```
+
+### Ternary if
+
+Instead of `if`..`else`..`end` you can use the ternary if syntax. `?:`
+
+```rb
+k=?1
+if k==?1
+p 1
+else
+p 0
+end          # before
+
+p k==?1?1:0  # after, saves 14 chars! (in this case)
+```
+
+### Scientific notation
+
+Remember scientific notation from school? Ruby has a way to use that.
+
+```rb
+a=10000  # before
+a=1e4
+```
+
+Be careful though, this returns a floating point number, so thing *can* get inaccurate as the number becomes larger.
+
+
+### Unary operators
+
+You must have heard about BODMAS or PEMDAS depending upon where you live. In programming however, it's UBODMAS or UPEDMAS. The 'U' stands for Unary. Unary operators have higher precedence than arithemetic (not including exponentiation)
+`~-a` is equivalent to `a-1` and `-~a` is equivalent to `a+1`
+```rb
+2*(1+2)  # correct, but long
+2*1+2    # wrong, according to BODMAS multiplication has higher precedence than addition
+2*-~2    # correct, 2 char shorter
+```
