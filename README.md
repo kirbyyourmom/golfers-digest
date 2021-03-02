@@ -54,7 +54,7 @@ Usually, `.join(' ')` does the job, but for code golf, you can use these:
 ```rb
 a=1,2,3,4
 a.join  # before
-a*''    # after
+a*' '   # after
 ```
 
 If you'd like to use a single char delimiter however, you can use the single character shorthand which is `?<character>` which is shown above.
