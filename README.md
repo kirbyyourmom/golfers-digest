@@ -44,6 +44,7 @@ a=[0,1,1,2]  # before
 a=0,1,1,2    # after
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### uniq(ue)
 
@@ -64,10 +65,13 @@ a.uniq;b=[]  # before
 a|b=[]       # after, an astounding 5 chars difference!
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
+
 ### Single character string literal shorthand
 
 If you use a single character string literal somewhere in an expression, you'd probably use `'a'` or `"a"`. But there's a shorthand 
 
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### Joining arrays
 
@@ -85,6 +89,8 @@ If you'd like to use a single char delimiter however, you can use the single cha
 a.join(',')  # before
 a*?,         # after, an astounding 7 char difference!
 ```
+
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### Include
 If you want to check whether a string contains a substring, you can use `[]` instead of `include?`
@@ -109,6 +115,8 @@ a="fooooooo"
 p a[/fo+/]  #=> "fooooooo"
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
+
 ### `tr` instead of `gsub`
 
 If you want character-wise substitution, use `tr` instead of `gsub`
@@ -118,6 +126,8 @@ If you want character-wise substitution, use `tr` instead of `gsub`
 # or
 "101011".tr'10','AB'
 ```
+
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### `chop` instead of `chomp`
 
@@ -137,6 +147,8 @@ a.chop  #=> "foobar"
 a="foobar"
 a.chop  #=> "fooba"
 ```
+
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### dash rocket / stabby lambda
 
@@ -161,6 +173,7 @@ max.(1,2) # " "
 This means you cannot exclude the brackets.
 So you'll have to sacrifice 1 char in certain cases.
 
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### Curb your `do` `end`
 
@@ -180,6 +193,8 @@ But, here's the problem. The precedence of `{`..`}` is high. Because of that, yo
 (?a..?m).zip((1..5).cycle){|a|puts a*?,}     # correct, applies it to zip not cycle
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
+
 ### Ternary if
 
 Instead of `if`..`else`..`end` you can use the ternary if syntax. `?:`
@@ -195,6 +210,8 @@ end          # before
 p k==?1?1:0  # after, saves 14 chars! (in this case)
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
+
 ### Scientific notation
 
 Remember scientific notation from school? Ruby has a way to use that.
@@ -206,6 +223,7 @@ a=1e4
 
 Be careful though, this returns a floating point number, so thing *can* get inaccurate as the number becomes larger.
 
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### Unary operators
 
@@ -217,6 +235,7 @@ You must have heard about BODMAS or PEMDAS depending upon where you live. In pro
 2*-~2    # correct, 2 char shorter
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### Range to Array conversion
 
@@ -227,6 +246,8 @@ There's a shorter way to convert a range to an array by using the splat operator
 [*(1..42)]    # after, but can be shortened even more
 [*1..43]      # after, 4 char difference.
 ```
+
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### Shorter way of using `compact`
 
@@ -240,6 +261,8 @@ a-[nil]    # after, but can be shortened
 a-[p]      # shorter by 4 chars total
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
+
 ### Replacing `true` and `false`
 
 `true` and `false` weren't too short for you? Well here's a trick to make them shorter ![](https://github.com/radius2703/golfers-digest/blob/master/assets/picardia-x32.png?raw=true)
@@ -252,6 +275,8 @@ false # before
 !0    # after
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
+
 If you just want a falsy value, you can use `p` which returns `nil` instead of `!0`.
 
 ### Checking if an element is inside a range
@@ -263,6 +288,8 @@ If you need to check if a particular element is inside a range, then you can use
 (1..42)===42        # after, saved 6 characters
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
+
 ### `digits`
 
 To get the digits of a number you can do the following:
@@ -272,6 +299,8 @@ a=42
 a.to_s.chars.map(&:to_i)  # before
 a.digits                  # after
 ```
+
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### Using `clamp`
 
@@ -284,6 +313,7 @@ a.clamp(min,max)  #=> 42
 b.clamp(min,max)  #=> 0
 ```
 
+[back to top ↑](#ruby-tips-for-code-golf)
 
 ### Set precision for `ceil` and `floor`
 
@@ -294,3 +324,5 @@ pi=3.1416
 pi.floor 1  #=> 3.1
 pi.ceil 1   #=> 3.2
 ```
+
+[back to top ↑](#ruby-tips-for-code-golf)
