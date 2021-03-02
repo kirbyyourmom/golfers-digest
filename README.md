@@ -1,5 +1,27 @@
 # Ruby tips for code golf!
 
+## Index
+- [What is Ruby code golfing?](#what-is-ruby-code-golfing)
+- [Array qssignment](#array-assignment)
+- [uniq(ue)](#unique)
+- [Joining arrays](#joining-arrays)
+- [Include](#include)
+- [`tr` instead of `gsub`](#tr-instead-of-gsub)
+- [`chop` instead of `chomp`](#chop-instead-of-chomp)
+- [dash rocket / stabby lambda](#dash-rocket--stabby-lambda)
+- [Curb your `do` `end`](#curb-your-do-end)
+- [Ternary if](#ternary-if)
+- [Scientific notation](#scientific-notation)
+- [Unary operators](#unary-operators)
+- [Range to Array conversion](#range-to-array-conversion)
+- [Shorter way of using `compact`](#shorter-way-of-using-compact)
+- [Replacing `true` and `false`](#replacing-true-and-false)
+- [Checking if an element is inside a range](#checking-if-an-element-is-inside-a-range)
+- [`digits`](#digits)
+- [Using `clamp`](#using-clamp)
+- [Set precision for `ceil` and `floor`](#set-precision-for-ceil-and-floor)
+
+
 ## What is Ruby code golfing?
 Code golfing is a "sport" of writing the smallest/shortest amount of code to do a particular thing/task. An example of which can be [making a morse encoder](https://code.golf/morse-encoder#ruby) in the shortest amount of code possible. And ruby code golfing, is basically code golfing but, in ruby!
 
