@@ -83,7 +83,8 @@ a["foo"]  #=> "foo"
 As a bonus, you can even use regular expression! ![](https://github.com/radius2703/golfers-digest/blob/master/assets/picardia-x32.png?raw=true)
 
 ```rb
-a[/foo/]  #=> "foo"
+a="fooooooo"
+p a[/fo+/]  #=> "fooooooo"
 ```
 
 ### `tr` instead of `gsub`
